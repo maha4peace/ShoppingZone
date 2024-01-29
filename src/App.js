@@ -1,5 +1,6 @@
 
 import './App.css';
+import { useState } from 'react';
 
 const products = [
   {
@@ -42,13 +43,34 @@ const products = [
 
 
 function App() {
+
+  const [cart, setCart] = useState([])
+
   return (
     <div>
       <h1> Hi There!</h1>
       <ul>
-        {products.map(item => <li> {item.name}</li>)}
+        {products.map(item => {
+          return (
+            <li> {item.name} <button onClick={() => {
+              setCart([...cart, item])
+              
+              // const tempArr = cart
+              // tempArr.push(item)
+              // setCart(tempArr) 
+            }}> Add to Cart </button> </li>
+          )
+        }
+        )}
       </ul>
-    
+      <h2> CART: </h2>
+      <ul>
+        {cart.map(item => {
+          return (
+            <li> {item.name} </li>
+          )
+        })}
+      </ul>
     </div>
   );
 }
