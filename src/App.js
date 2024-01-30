@@ -1,6 +1,8 @@
 
 import './App.css';
 import { useState } from 'react';
+import Product from './components/Products';
+import Cartitem from './components/Cartitem';
 
 const products = [
   {
@@ -52,13 +54,7 @@ function App() {
       <ul>
         {products.map(item => {
           return (
-            <li> {item.name} <button onClick={() => {
-              setCart([...cart, item])
-              
-              // const tempArr = cart
-              // tempArr.push(item)
-              // setCart(tempArr) 
-            }}> Add to Cart </button> </li>
+           <Product item = {item} setCart = {setCart} cart = {cart}/>
           )
         }
         )}
@@ -67,10 +63,12 @@ function App() {
       <ul>
         {cart.map(item => {
           return (
-            <li> {item.name} </li>
+            <Cartitem item = {item} /> 
           )
         })}
       </ul>
+
+    
     </div>
   );
 }
